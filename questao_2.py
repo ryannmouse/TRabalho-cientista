@@ -1,6 +1,6 @@
 ## Questão 2 
 class Node:
-    def _init_(self, value):
+    def __init__(self, value):
         # Inicializa um novo nó com um valor, e define filhos e altura
         self.value = value
         self.left = None  # Inicializa o filho esquerdo como None
@@ -9,7 +9,7 @@ class Node:
 
 
 class AVLTree:
-    def _init_(self):
+    def __init__(self):
         # Inicializa a árvore AVL com a raiz como None
         self.root = None
 
@@ -173,7 +173,7 @@ class AVLTree:
 
 
 # Exemplo de uso:
-if '__name__' == "__main__":
+if __name__ == "__main__":
     tree = AVLTree()  # Cria uma nova árvore AVL
     tree.insert_value(10)  # Insere valores na árvore
     tree.insert_value(20)
