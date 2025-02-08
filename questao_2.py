@@ -173,7 +173,7 @@ class AVLTree:
 
 
 # Exemplo de uso:
-if _name_ == "_main_":
+if '__name__' == "__main__":
     tree = AVLTree()  # Cria uma nova Ã¡rvore AVL
     tree.insert_value(10)  # Insere valores na Ã¡rvore
     tree.insert_value(20)
