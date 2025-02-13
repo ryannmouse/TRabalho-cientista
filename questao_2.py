@@ -1,6 +1,7 @@
 ## Questão 2 
+
 class Node:
-    def _init_(self, value):
+    def __init__(self, value):
         # Inicializa um novo nó com um valor, e define filhos e altura
         self.value = value
         self.left = None  # Inicializa o filho esquerdo como None
@@ -9,7 +10,7 @@ class Node:
 
 
 class AVLTree:
-    def _init_(self):
+    def __init__(self):
         # Inicializa a árvore AVL com a raiz como None
         self.root = None
 
@@ -150,6 +151,13 @@ class AVLTree:
             current = current.left  # Continua indo para o filho esquerdo
         return current  # Retorna o nó com o menor valor
 
+    def max_value_node(self, root):
+        # Encontra o nó com o menor valor na subárvore
+        current = root
+        while current.right:
+            current = current.right # Continua indo para o filho esquerdo
+        return current.value  # Retorna o nó com o menor valor
+
     def search(self, root, value):
         # Busca um valor na árvore AVL
         if not root or root.value == value:
@@ -170,32 +178,45 @@ class AVLTree:
     def search_value(self, value):
         # Método público para buscar um valor na árvore
         return self.search(self.root, value)
+    
+    def pre_order(self, root):
+        # Percurso Pré-Ordem
+        if root:
+            print(root.value)
+            self.pre_order(root.left)
+            self.pre_order(root.right)
+
+    def post_order(self, root):
+        # Percurso Pós-Ordem
+        if root:
+            self.post_order(root.left)
+            self.post_order(root.right)
+            print(root.value)
+
+    def inorder_traversal(self, root):
+        # Percurso Em-Ordem
+        if root:
+            self.inorder_traversal(root.left)  # Percorre o filho esquerdo
+            print(root.value)  # Imprime o valor do nó
+            self.inorder_traversal(root.right)  # Percorre o filho direito
 
 
 # Exemplo de uso:
-if '__name__' == "__main__":
+if __name__ == "__main__":
     tree = AVLTree()  # Cria uma nova árvore AVL
     tree.insert_value(10)  # Insere valores na árvore
     tree.insert_value(20)
     tree.insert_value(30)
     tree.insert_value(40)
     tree.insert_value(50)
-
     print("Tree after insertion:")
     
-    # Função para percorrer a árvore em ordem e imprimir os valores
-    def inorder_traversal(root):
-        if root:
-            inorder_traversal(root.left)  # Percorre o filho esquerdo
-            print(root.value)  # Imprime o valor do nó
-            inorder_traversal(root.right)  # Percorre o filho direito
-
-    inorder_traversal(tree.root)  # Chama a função de percurso
+    tree.inorder_traversal(tree.root)  # Chama a função de percurso Em-Ordem
     print()
 
     tree.delete_value(20)  # Deleta um valor da árvore
     print("Tree after deletion of 20:")
-    inorder_traversal(tree.root)  # Chama a função de percurso novamente
+    tree.inorder_traversal(tree.root)  # Chama a função de percurso Em-Ordem novamente
     print()
 
     result = tree.search_value(30)  # Busca um valor na árvore
@@ -203,3 +224,13 @@ if '__name__' == "__main__":
         print("Node found")  # Se encontrado, imprime "Node found"
     else:
         print("Node not found")  # Se não encontrado, imprime "Node not found"
+    
+    print("Pre-order traversal:")
+    tree.pre_order(tree.root)  # Chama a função de percurso Pré-Ordem
+    print()
+
+    print("Post-order traversal:")
+    tree.post_order(tree.root)  # Chama a função de percurso Pós-Ordem
+    print()
+    print(tree.max_value_node(tree.root))
+    print(tree.min_value_node(tree.root).value)
