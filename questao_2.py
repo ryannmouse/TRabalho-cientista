@@ -156,7 +156,7 @@ class AVLTree:
         current = root
         while current.right:
             current = current.right # Continua indo para o filho esquerdo
-        return current.value  # Retorna o nó com o menor valor
+        return current  # Retorna o nó com o menor valor
 
     def search(self, root, value):
         # Busca um valor na árvore AVL
@@ -199,7 +199,8 @@ class AVLTree:
             self.inorder_traversal(root.left)  # Percorre o filho esquerdo
             print(root.value)  # Imprime o valor do nó
             self.inorder_traversal(root.right)  # Percorre o filho direito
-
+    
+    
 
 # Exemplo de uso:
 if __name__ == "__main__":
@@ -232,5 +233,5 @@ if __name__ == "__main__":
     print("Post-order traversal:")
     tree.post_order(tree.root)  # Chama a função de percurso Pós-Ordem
     print()
-    print(tree.max_value_node(tree.root))
+    print(tree.max_value_node(tree.root).value)
     print(tree.min_value_node(tree.root).value)
