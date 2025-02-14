@@ -143,6 +143,14 @@ class AVLTree:
         y.height = 1 + max(self.height(y.left), self.height(y.right))
 
         return y  # Retorna o novo nó pai
+    
+    def left_right_rotate(self, z):
+        z.left = self.left_rotate(z.left)
+        return self.right_rotate(z)
+    
+    def right_left_rotate(self, z):
+        z.right = self.right_rotate(z.right)
+        return self.left_rotate(z)
 
     def min_value_node(self, root):
         # Encontra o nó com o menor valor na subárvore
